@@ -30,6 +30,12 @@ SKALE_CHAIN=[YOUR_SKALE_CHAIN_ENDPOINT]
 ```
 npm start
 ```
+
+
+### Othes
+- Hackathon: Ethereal Blocks
+  - Build A Killer DApp With SKALE’s Decentralized Stack
+https://gitcoin.co/issue/skalenetwork/hackathon/1
     
 
 
