@@ -217,57 +217,126 @@ class App extends Component {
       )}
       {this.state.web3 && this.state.cz_exchange && (
         <div className={styles.contracts}>
-          <div className={styles.widgets}>
-            <Image
-              alt="random unsplash image"
-              borderRadius={8}
-              height="auto"
-              maxWidth='30%'
-              src="https://source.unsplash.com/random/1280x720"
-            />
-            <Image
-              alt="random unsplash image"
-              borderRadius={8}
-              height="auto"
-              maxWidth='30%'
-              src="https://source.unsplash.com/random/1280x720"
-            />
-            <Image
-              alt="random unsplash image"
-              borderRadius={8}
-              height="auto"
-              maxWidth='30%'
-              src="https://source.unsplash.com/random/1280x720"
-            />
-          </div>
+
+          <h2>SKALE DEx</h2>
 
           <div className={styles.widgets}>
-            <Image
-              alt="random unsplash image"
-              borderRadius={8}
-              height="auto"
-              maxWidth='30%'
-              src="https://source.unsplash.com/random/1280x720"
-            />
-            <Image
-              alt="random unsplash image"
-              borderRadius={8}
-              height="auto"
-              maxWidth='30%'
-              src="https://source.unsplash.com/random/1280x720"
-            />
-            <Image
-              alt="random unsplash image"
-              borderRadius={8}
-              height="auto"
-              maxWidth='30%'
-              src="https://source.unsplash.com/random/1280x720"
-            />
+            <Card width={'30%'} bg="primary">
+              <h4>Goods #1</h4>
+
+              <Image
+                alt="random unsplash image"
+                borderRadius={8}
+                height="auto"
+                maxWidth='100%'
+                src="https://source.unsplash.com/random/1280x720"
+              />
+
+              <span style={{ padding: "20px" }}></span>
+
+              <br />
+
+              <Button size={'small'} onClick={this.getTestData}>Buy</Button>
+            </Card>
+   
+            <Card width={'30%'} bg="primary">
+              <h4>Goods #2</h4>
+
+              <Image
+                alt="random unsplash image"
+                borderRadius={8}
+                height="auto"
+                maxWidth='100%'
+                src="https://source.unsplash.com/random/1280x720"
+              />
+
+              <span style={{ padding: "20px" }}></span>
+
+              <br />
+
+              <Button size={'small'} onClick={this.getTestData}>Buy</Button>
+            </Card>
+
+            <Card width={'30%'} bg="primary">
+              <h4>Goods #3</h4>
+
+              <Image
+                alt="random unsplash image"
+                borderRadius={8}
+                height="auto"
+                maxWidth='100%'
+                src="https://source.unsplash.com/random/1280x720"
+              />
+
+              <span style={{ padding: "20px" }}></span>
+
+              <br />
+
+              <Button size={'small'} onClick={this.getTestData}>Buy</Button>
+            </Card>
           </div>
 
+
           <div className={styles.widgets}>
-            <Card width={'350px'} bg="primary">
-              <h2>SKALE DEx</h2>
+            <Card width={'30%'} bg="primary">
+              <h4>Goods #4</h4>
+
+              <Image
+                alt="random unsplash image"
+                borderRadius={8}
+                height="auto"
+                maxWidth='100%'
+                src="https://source.unsplash.com/random/1280x720"
+              />
+
+              <span style={{ padding: "20px" }}></span>
+
+              <br />
+
+              <Button size={'small'} onClick={this.getTestData}>Buy</Button>
+            </Card>
+   
+            <Card width={'30%'} bg="primary">
+              <h4>Goods #5</h4>
+
+              <Image
+                alt="random unsplash image"
+                borderRadius={8}
+                height="auto"
+                maxWidth='100%'
+                src="https://source.unsplash.com/random/1280x720"
+              />
+
+              <span style={{ padding: "20px" }}></span>
+
+              <br />
+
+              <Button size={'small'} onClick={this.getTestData}>Buy</Button>
+            </Card>
+
+            <Card width={'30%'} bg="primary">
+              <h4>Goods #6</h4>
+
+              <Image
+                alt="random unsplash image"
+                borderRadius={8}
+                height="auto"
+                maxWidth='100%'
+                src="https://source.unsplash.com/random/1280x720"
+              />
+
+              <span style={{ padding: "20px" }}></span>
+
+              <br />
+
+              <Button size={'small'} onClick={this.getTestData}>Buy</Button>
+            </Card>
+          </div>
+
+
+          <div className={styles.widgets}>
+            <Card width={'30%'} bg="primary">
+              <h2>SKALE DEx / Test Button</h2>
 
               <Button onClick={this.getTestData}>Get Test Data</Button>
             </Card>
