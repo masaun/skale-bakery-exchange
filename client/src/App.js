@@ -5,7 +5,7 @@ import Footer from "./components/Footer/index.js";
 import Hero from "./components/Hero/index.js";
 import Web3Info from "./components/Web3Info/index.js";
 
-import { Loader, Button, Card, Input, Heading, Table, Form } from 'rimble-ui';
+import { Loader, Button, Card, Input, Heading, Table, Form, Flex, Box, Image } from 'rimble-ui';
 import { Grid } from 'react-bootstrap';
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
@@ -218,12 +218,61 @@ class App extends Component {
       {this.state.web3 && this.state.cz_exchange && (
         <div className={styles.contracts}>
           <div className={styles.widgets}>
+            <Image
+              alt="random unsplash image"
+              borderRadius={8}
+              height="auto"
+              maxWidth='30%'
+              src="https://source.unsplash.com/random/1280x720"
+            />
+            <Image
+              alt="random unsplash image"
+              borderRadius={8}
+              height="auto"
+              maxWidth='30%'
+              src="https://source.unsplash.com/random/1280x720"
+            />
+            <Image
+              alt="random unsplash image"
+              borderRadius={8}
+              height="auto"
+              maxWidth='30%'
+              src="https://source.unsplash.com/random/1280x720"
+            />
+          </div>
+
+          <div className={styles.widgets}>
+            <Image
+              alt="random unsplash image"
+              borderRadius={8}
+              height="auto"
+              maxWidth='30%'
+              src="https://source.unsplash.com/random/1280x720"
+            />
+            <Image
+              alt="random unsplash image"
+              borderRadius={8}
+              height="auto"
+              maxWidth='30%'
+              src="https://source.unsplash.com/random/1280x720"
+            />
+            <Image
+              alt="random unsplash image"
+              borderRadius={8}
+              height="auto"
+              maxWidth='30%'
+              src="https://source.unsplash.com/random/1280x720"
+            />
+          </div>
+
+          <div className={styles.widgets}>
             <Card width={'350px'} bg="primary">
-              <h2>SKALE Exchange</h2>
+              <h2>SKALE DEx</h2>
 
               <Button onClick={this.getTestData}>Get Test Data</Button>
             </Card>
           </div>
+
         </div>
       )}
       </div>

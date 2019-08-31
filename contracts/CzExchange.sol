@@ -17,4 +17,10 @@ contract CzExchange is CzStorage, CzOwnable {
     }
 
 
+    function foodExchange() public returns (bool) {
+        return true;    
+    }
+    
+    
+
 }
