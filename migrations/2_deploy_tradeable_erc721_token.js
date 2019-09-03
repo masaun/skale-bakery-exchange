@@ -13,9 +13,11 @@ module.exports = function(deployer, network) {
   }
 
 
-  deployer.deploy(TradeableERC721Token, _name, _symbol, proxyRegistryAddress, {gas: 5000000});
-  
-
-  
-  
+  deployer.deploy(
+    TradeableERC721Token, 
+    _name, 
+    _symbol, proxyRegistryAddress, 
+    { gas: 5000000 }
+  );
+    
 };
