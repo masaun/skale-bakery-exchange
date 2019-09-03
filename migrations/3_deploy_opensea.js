@@ -2,6 +2,7 @@ const Creature = artifacts.require("./Creature.sol");
 const CreatureFactory = artifacts.require("./CreatureFactory.sol");
 const CreatureLootBox = artifacts.require("./CreatureLootBox.sol");
 
+const TradeableERC721Token = artifacts.require("./TradeableERC721Token.sol");
 const tradeableERC721TokenAddress = TradeableERC721Token.address;   // Inherit
 
 module.exports = function(deployer, network) {
