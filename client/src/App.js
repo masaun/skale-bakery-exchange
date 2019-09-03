@@ -67,11 +67,17 @@ class App extends Component {
     const response_3 = await creature.methods.tokenURI(_tokenId).call()
     console.log('=== response of tokenURI function ===', response_3);  // Debug
 
+    let _ownerAddress = '0xc2e05710aef33b63bc6b2b7471f3fa072b1fa15b'
+    const response_6 = await creature.methods.mintNFT(_ownerAddress).send({ from: accounts[0] })
+    console.log('=== response of mintTokenId function ===', response_6);  // Debug
 
-    let _optionId = 0
+    const response_5 = await creature_factory.methods.canMint(_tokenId).call()
+    console.log('=== response of canMint function ===', response_5);  // Debug
+
+    let _optionId = 2
     let _toAddress = '0xc2e05710aef33b63bc6b2b7471f3fa072b1fa15b'
     const response_4 = await creature_factory.methods.mint(_optionId, _toAddress).send({ from: accounts[0] })
-    console.log('=== response of _getNextTokenId function ===', response_4);  // Debug
+    console.log('=== response of _mint function ===', response_4);  // Debug
 
   }
 

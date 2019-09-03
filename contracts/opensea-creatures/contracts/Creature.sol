@@ -8,9 +8,24 @@ import "../../openzeppelin-solidity/contracts/ownership/Ownable.sol";
  * Creature - a contract for my non-fungible creatures.
  */
 contract Creature is TradeableERC721Token {
-  constructor(address _proxyRegistryAddress) TradeableERC721Token("Creature", "OSC", _proxyRegistryAddress) public {  }
 
-  function baseTokenURI() public view returns (string memory) {
-    return "https://opensea-creatures-api.herokuapp.com/api/creature/";
-  }
+    address public proxyRegistryAddress;
+    address public tradeableERC721TokenAddress;
+
+    constructor(address _proxyRegistryAddress, address _tradeableERC721TokenAddress) TradeableERC721Token("Skale Token", "SKT", _proxyRegistryAddress) public {  
+        proxyRegistryAddress = _proxyRegistryAddress;
+        tradeableERC721TokenAddress = _tradeableERC721TokenAddress;
+    }
+
+    function baseTokenURI() public view returns (string memory) {
+        return "https://opensea-creatures-api.herokuapp.com/api/creature/";
+    }
+
+
+    function mintNFT(address _ownerAddress) public returns (bool) {
+        TradeableERC721Token(tradeableERC721TokenAddress).mintTo(_ownerAddress);
+    }
+    
+    
+  
 }

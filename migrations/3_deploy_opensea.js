@@ -1,6 +1,8 @@
 const Creature = artifacts.require("./Creature.sol");
-const CreatureFactory = artifacts.require("./CreatureFactory.sol")
+const CreatureFactory = artifacts.require("./CreatureFactory.sol");
 const CreatureLootBox = artifacts.require("./CreatureLootBox.sol");
+
+const tradeableERC721TokenAddress = TradeableERC721Token.address;   // Inherit
 
 module.exports = function(deployer, network) {
   // OpenSea proxy registry addresses for rinkeby and mainnet.
@@ -20,7 +22,7 @@ module.exports = function(deployer, network) {
   /** 
    * Uncomment this if you want initial item sale support.
    */
-  deployer.deploy(Creature, proxyRegistryAddress, {gas: 5000000}).then(() => {
+  deployer.deploy(Creature, proxyRegistryAddress, tradeableERC721TokenAddress, {gas: 5000000}).then(() => {
     return deployer.deploy(CreatureFactory, proxyRegistryAddress, Creature.address, {gas: 7000000});
   }).then(async() => {
     var creature = await Creature.deployed();
