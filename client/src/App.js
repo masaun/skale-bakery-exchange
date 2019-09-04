@@ -59,9 +59,27 @@ class App extends Component {
     const response = await cz_exchange.methods.testFunc().send({ from: accounts[0] })
     console.log('=== response of testFunc function ===', response);  // Debug
 
-
     const response_2 = await creature.methods.baseTokenURI().call()
     console.log('=== response of baseTokenURI function ===', response_2);  // Debug
+
+
+    let _tokenId = 1
+    const response_3 = await creature.methods.tokenURI(_tokenId).call()
+    console.log('=== response of tokenURI function ===', response_3);  // Debug
+
+
+    const response_5 = await creature_factory.methods.canMint(_tokenId).call()
+    console.log('=== response of canMint function ===', response_5);   // Debug --> Successful
+
+
+    const response_7 = await cz_exchange.methods.checkOwnerAddr(_tokenId).call();
+    console.log('=== response of checkOwnerAddr function ===', response_7);  // Debug --> Successful
+
+
+    let _to = "0xc2e05710aef33b63bc6b2b7471f3fa072b1fa15b"
+    const response_6 = await cz_exchange.methods.mintNFT(_to, _tokenId).send({ from: accounts[0] })
+    console.log('=== response of mintNFT function ===', response_6);  // Debug --> Fail
+
   }
 
 
@@ -374,7 +392,7 @@ class App extends Component {
             <Card width={'30%'} bg="primary">
               <h2>SKALE DEx / Test Button</h2>
 
-              <Button onClick={this.getTestData}>Get Test Data</Button>
+              <Button width={'100%'} onClick={this.getTestData}>Get Test Data</Button>
             </Card>
           </div>
 
