@@ -69,6 +69,19 @@ contract CzExchange is ERC721Full, Ownable, CzStorage, CzOwnable {
     }
     
 
+    /**
+     * @dev Buy NFT and ownership-transfer at the same time. 
+     */
+    function buyNFT(uint256 _tokenId, address _buyer) public returns (bool) {
+        // Buy NFT
+        address public _seller;   // Owener currently
+
+
+        // Ownership-Transfer
+        transferFrom(_seller, _buyer, _tokenId);
+    }
+    
+
 
 
 
