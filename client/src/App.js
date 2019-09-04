@@ -68,9 +68,13 @@ class App extends Component {
     console.log('=== response of tokenURI function ===', response_3);  // Debug
 
 
-    let _to = "0xc2e05710aef33b63bc6b2b7471f3fa072b1fa15b"
-    const response_6 = await cz_exchange.methods.mintNFT(_to, _tokenId).send({ from: accounts[0] })
-    console.log('=== response of mintNFT function ===', response_6);  // Debug --> Successful
+    //let _to = "0xc2e05710aef33b63bc6b2b7471f3fa072b1fa15b"
+    // const response_6 = await cz_exchange.methods.mintNFT(_to, _tokenId).send({ from: accounts[0] })
+    // console.log('=== response of mintNFT function ===', response_6);  // Debug
+
+
+    const response_7 = await cz_exchange.methods.checkOwnerAddr(_tokenId).call();
+    console.log('=== response of checkOwnerAddr function ===', response_7);  // Debug
 
 
     const response_5 = await creature_factory.methods.canMint(_tokenId).call()

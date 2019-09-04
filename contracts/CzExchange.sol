@@ -44,7 +44,12 @@ contract CzExchange is ERC721Full, Ownable, CzStorage, CzOwnable {
     }
 
 
-    
+
+
+    function checkOwnerAddr(uint256 _tokenId) public returns (address) {
+        // This ownnerOf() function is inherited ERC721.sol
+        return ownerOf(_tokenId);
+    }
 
 
 
