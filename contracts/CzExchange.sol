@@ -50,14 +50,10 @@ contract CzExchange is ERC721Full, Ownable, CzStorage, CzOwnable {
     }
 
 
-
-
     function checkOwnerAddr(uint256 _tokenId) public returns (address) {
         // This ownnerOf() function is inherited ERC721.sol
         return ownerOf(_tokenId);
     }
-
-
 
 
     function mintNFT(address _to) public returns (bool) {
@@ -74,11 +70,11 @@ contract CzExchange is ERC721Full, Ownable, CzStorage, CzOwnable {
      */
     function buyNFT(uint256 _tokenId, address _buyer) public returns (bool) {
         // Buy NFT
-        address public _seller;   // Owener currently
-
+        address _seller;       // Owener currently
+        _seller = ownerOf(_tokenId);  // Assign current owner (ownerOf function is inherited from ERC721.sol)
 
         // Ownership-Transfer
-        transferFrom(_seller, _buyer, _tokenId);
+        transferFrom(_seller, _buyer, _tokenId);  // This transferFrom() function is inherited ERC721.sol
     }
     
 
