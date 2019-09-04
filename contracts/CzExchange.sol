@@ -21,6 +21,8 @@ contract CzExchange is ERC721Full, Ownable, CzStorage, CzOwnable {
 
     using SafeMath for uint256;
 
+    uint256 public tokenId;
+
     // address proxyRegistryAddress;
     // uint256 private _currentTokenId = 0;
 
@@ -31,16 +33,17 @@ contract CzExchange is ERC721Full, Ownable, CzStorage, CzOwnable {
 
 
     constructor(
-        string memory name, 
-        string memory symbol,
-        uint tokenId,
-        string memory tokenURI
+        string memory _name, 
+        string memory _symbol,
+        uint _tokenId,
+        string memory _tokenURI
     )
-        ERC721Full(name, symbol)
+        ERC721Full(_name, _symbol)
         public
     {
+        tokenId = _tokenId;
         _mint(msg.sender, tokenId);
-        _setTokenURI(tokenId, tokenURI);
+        _setTokenURI(tokenId, _tokenURI);
     }
 
 
@@ -54,10 +57,10 @@ contract CzExchange is ERC721Full, Ownable, CzStorage, CzOwnable {
 
 
 
-    function mintNFT(address _to, uint256 _tokenId) public returns (bool) {
+    function mintNFT(address _to) public returns (bool) {
         // This _mint() function is inherited ERC721.sol
-        _tokenId++;
-        _mint(_to, _tokenId);
+        tokenId++;
+        _mint(_to, tokenId);
 
         return true;
     }
