@@ -81,11 +81,11 @@ class App extends Component {
      */
     let _to1 = "0xc2e05710aef33b63bc6b2b7471f3fa072b1fa15b"
     const response_6 = await cz_exchange.methods.mintNFT(_to1).send({ from: accounts[0] })
-    console.log('=== response of mintNFT function（tokenId = 1）===', response_6);  // Debug --> Success
+    console.log('=== response of mintNFT function（tokenId = 2）===', response_6);  // Debug --> Success
 
     let _to2 = "0x8d46fdefcc0702dbca05bfbfc21abf197be970a9"
     const response_8 = await cz_exchange.methods.mintNFT(_to2).send({ from: accounts[0] })
-    console.log('=== response of mintNFT function（tokenId = 2）===', response_8);  // Debug --> Fail
+    console.log('=== response of mintNFT function（tokenId = 3）===', response_8);  // Debug --> Fail
 
   }
 

@@ -41,6 +41,9 @@ contract CzExchange is ERC721Full, Ownable, CzStorage, CzOwnable {
         ERC721Full(_name, _symbol)
         public
     {
+        /**
+         * @dev Create seed-data (Connect ownerAddress with tokenId == 1) in constructor
+         */ 
         tokenId = _tokenId;
         _mint(msg.sender, tokenId);
         _setTokenURI(tokenId, _tokenURI);
