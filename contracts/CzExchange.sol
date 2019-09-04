@@ -56,6 +56,7 @@ contract CzExchange is ERC721Full, Ownable, CzStorage, CzOwnable {
 
     function mintNFT(address _to, uint256 _tokenId) public returns (bool) {
         // This _mint() function is inherited ERC721.sol
+        _tokenId++;
         _mint(_to, _tokenId);
 
         return true;
