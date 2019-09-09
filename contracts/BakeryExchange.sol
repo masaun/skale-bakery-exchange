@@ -17,7 +17,7 @@ contract ProxyRegistry {
 }
 
 
-contract CzExchange is ERC721Full, Ownable, CzStorage, CzOwnable {
+contract BakeryExchange is ERC721Full, Ownable, CzStorage, CzOwnable {
 
     using SafeMath for uint256;
 

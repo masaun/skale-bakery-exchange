@@ -1,4 +1,4 @@
-const CzExchange = artifacts.require("./CzExchange.sol");
+const BakeryExchange = artifacts.require("./BakeryExchange.sol");
 
 
 module.exports = function(deployer, network, accounts) {
@@ -15,7 +15,7 @@ module.exports = function(deployer, network, accounts) {
   // }
 
   deployer.deploy(
-    CzExchange,
+    BakeryExchange,
     name, 
     symbol,
     tokenId,
