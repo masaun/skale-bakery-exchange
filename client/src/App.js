@@ -76,9 +76,25 @@ class App extends Component {
     console.log('=== response of checkOwnerAddr function ===', response_7);  // Debug --> Successful
 
 
-    let _to = "0xc2e05710aef33b63bc6b2b7471f3fa072b1fa15b"
-    const response_6 = await cz_exchange.methods.mintNFT(_to, _tokenId).send({ from: accounts[0] })
-    console.log('=== response of mintNFT function ===', response_6);  // Debug --> Fail
+    /**
+     * @dev mintNFT function
+     */
+    let _to1 = "0xc2e05710aef33b63bc6b2b7471f3fa072b1fa15b"
+    const response_6 = await cz_exchange.methods.mintNFT(_to1).send({ from: accounts[0] })
+    console.log('=== response of mintNFT function（tokenId = 2）===', response_6);  // Debug --> Successful
+
+    let _to2 = "0x8d46fdefcc0702dbca05bfbfc21abf197be970a9"
+    const response_8 = await cz_exchange.methods.mintNFT(_to2).send({ from: accounts[0] })
+    console.log('=== response of mintNFT function（tokenId = 3）===', response_8);  // Debug --> Successful
+
+
+    /**
+     * @dev buyNFT function
+     */
+    let _tokenIdBuyNFT = 2
+    let _buyer = "0xb7f1a8b10ac4e9c0ba2fd705dc7b45dfff72ced1"
+    const response_9 = await cz_exchange.methods.buyNFT(_tokenIdBuyNFT, _buyer).send({ from: accounts[0] })
+    console.log('=== response of buyNFT function ===', response_9);  // Debug --> Fail
 
   }
 

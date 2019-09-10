@@ -17,9 +17,11 @@ contract ProxyRegistry {
 }
 
 
-contract CzExchange is ERC721Full, Ownable, CzStorage, CzOwnable {
+contract BakeryExchange is ERC721Full, Ownable, CzStorage, CzOwnable {
 
     using SafeMath for uint256;
+
+    uint256 public tokenId;
 
     // address proxyRegistryAddress;
     // uint256 private _currentTokenId = 0;
@@ -31,19 +33,21 @@ contract CzExchange is ERC721Full, Ownable, CzStorage, CzOwnable {
 
 
     constructor(
-        string memory name, 
-        string memory symbol,
-        uint tokenId,
-        string memory tokenURI
+        string memory _name, 
+        string memory _symbol,
+        uint _tokenId,
+        string memory _tokenURI
     )
-        ERC721Full(name, symbol)
+        ERC721Full(_name, _symbol)
         public
     {
+        /**
+         * @dev Create seed-data (Connect ownerAddress with tokenId == 1) in constructor
+         */ 
+        tokenId = _tokenId;
         _mint(msg.sender, tokenId);
-        _setTokenURI(tokenId, tokenURI);
+        _setTokenURI(tokenId, _tokenURI);
     }
-
-
 
 
     function checkOwnerAddr(uint256 _tokenId) public returns (address) {
@@ -52,14 +56,25 @@ contract CzExchange is ERC721Full, Ownable, CzStorage, CzOwnable {
     }
 
 
-
-
-    function mintNFT(address _to, uint256 _tokenId) public returns (bool) {
+    function mintNFT(address _to) public returns (bool) {
         // This _mint() function is inherited ERC721.sol
-        _tokenId++;
-        _mint(_to, _tokenId);
+        tokenId++;
+        _mint(_to, tokenId);
 
         return true;
+    }
+    
+
+    /**
+     * @dev Buy NFT and ownership-transfer at the same time. 
+     */
+    function buyNFT(uint256 _tokenId, address _buyer) public returns (bool) {
+        // Buy NFT
+        address _seller;       // Owener currently
+        _seller = ownerOf(_tokenId);  // Assign current owner (ownerOf function is inherited from ERC721.sol)
+
+        // Ownership-Transfer
+        transferFrom(_seller, _buyer, _tokenId);  // This transferFrom() function is inherited ERC721.sol
     }
     
 
