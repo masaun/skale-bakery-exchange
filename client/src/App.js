@@ -5,8 +5,11 @@ import Footer from "./components/Footer/index.js";
 import Hero from "./components/Hero/index.js";
 import Web3Info from "./components/Web3Info/index.js";
 
-import { Loader, Button, Card, Input, Heading, Table, Form, Flex, Box, Image } from 'rimble-ui';
+import { Loader, Button, Card, Input, Heading, Table, Form, Image } from 'rimble-ui';
 import { Grid } from 'react-bootstrap';
+
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
+import { moment } from 'moment'
 
 import { zeppelinSolidityHotLoaderOptions } from '../config/webpack';
 
@@ -104,13 +107,11 @@ class App extends Component {
     const hotLoaderDisabled = zeppelinSolidityHotLoaderOptions.disabled;
  
     let BakeryExchange = {};
-    let OracleWizardData = {};
     let Creature = {};
     let CreatureFactory = {};
 
     try {
       BakeryExchange = require("../../build/contracts/BakeryExchange.json");      // Load ABI of contract of BakeryExchange
-      OracleWizardData = require("../../build/contracts/OracleWizardData.json");  // Load ABI of contract of OracleWizardData
       Creature = require("../../build/contracts/Creature.json");                  // Load ABI of contract of Creature
       CreatureFactory = require("../../build/contracts/CreatureFactory.json");    // Load ABI of contract of CreatureFactory
     } catch (e) {
@@ -140,7 +141,6 @@ class App extends Component {
         balance = web3.utils.fromWei(balance, 'ether');
 
         let instanceBakeryExchange = null;
-        let instanceOracleWizardData = null;
         let instanceCreature = null;
         let instanceCreatureFactory = null;
         let deployedNetwork = null;
@@ -154,16 +154,6 @@ class App extends Component {
               deployedNetwork && deployedNetwork.address,
             );
             console.log('=== instanceBakeryExchange ===', instanceBakeryExchange);
-          }
-        }
-        if (OracleWizardData.networks) {
-          deployedNetwork = OracleWizardData.networks[networkId.toString()];
-          if (deployedNetwork) {
-            instanceOracleWizardData = new web3.eth.Contract(
-              OracleWizardData.abi,
-              deployedNetwork && deployedNetwork.address,
-            );
-            console.log('=== instanceOracleWizardData ===', instanceOracleWizardData);
           }
         }
         if (Creature.networks) {
@@ -187,14 +177,14 @@ class App extends Component {
           }
         }
 
-        if (instanceBakeryExchange || instanceOracleWizardData || Creature || CreatureFactory) {
+        if (instanceBakeryExchange || Creature || CreatureFactory) {
           // Set web3, accounts, and contract to the state, and then proceed with an
           // example of interacting with the contract's methods.
           this.setState({ web3, ganacheAccounts, accounts, balance, networkId, networkType, hotLoaderDisabled,
-            isMetaMask, bakery_exchange: instanceBakeryExchange, oracle_wizard_data: instanceOracleWizardData, creature: instanceCreature, creature_factory: instanceCreatureFactory }, () => {
-              this.refreshValues(instanceBakeryExchange, instanceOracleWizardData, instanceCreature, instanceCreatureFactory);
+            isMetaMask, bakery_exchange: instanceBakeryExchange, creature: instanceCreature, creature_factory: instanceCreatureFactory }, () => {
+              this.refreshValues(instanceBakeryExchange, instanceCreature, instanceCreatureFactory);
               setInterval(() => {
-                this.refreshValues(instanceBakeryExchange, instanceOracleWizardData, instanceCreature, instanceCreatureFactory);
+                this.refreshValues(instanceBakeryExchange, instanceCreature, instanceCreatureFactory);
               }, 5000);
             });
         }
@@ -217,12 +207,9 @@ class App extends Component {
     }
   }
 
-  refreshValues = (instanceBakeryExchange, instanceOracleWizardData, instanceCreature, instanceCreatureFactory) => {
+  refreshValues = (instanceBakeryExchange, instanceCreature, instanceCreatureFactory) => {
     if (instanceBakeryExchange) {
       console.log('refreshValues of instanceBakeryExchange');
-    }
-    if (instanceOracleWizardData) {
-      console.log('refreshValues of instanceOracleWizardData');
     }
     if (instanceCreature) {
       console.log('refreshValues of instanceCreature');
