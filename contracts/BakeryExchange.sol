@@ -1,8 +1,8 @@
 pragma solidity >=0.4.22 <0.6.0;
 
 import "./openzeppelin-solidity/contracts/math/SafeMath.sol";
-import "./storage/CzStorage.sol";
-import "./modifiers/CzOwnable.sol";
+import "./storage/BkStorage.sol";
+import "./modifiers/BkOwnable.sol";
 
 
 import './openzeppelin-solidity/contracts/token/ERC721/ERC721Full.sol';
@@ -17,7 +17,7 @@ contract ProxyRegistry {
 }
 
 
-contract BakeryExchange is ERC721Full, Ownable, CzStorage, CzOwnable {
+contract BakeryExchange is ERC721Full, Ownable, BkStorage, BkOwnable {
 
     using SafeMath for uint256;
 
