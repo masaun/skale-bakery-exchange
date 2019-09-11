@@ -6,11 +6,14 @@
 - SKALE Bakery Exchange is decentralized exchange of ingredients by using ERC721 token.
   (it give tokenId per ingredient)
 
+- Save and call images of ingredients in FileStorage of SKALE. (In progress to implement)
+  https://developers.skalelabs.com/file-storage
+
 
 ***
 
 
-##【Setup at local】
+## 【Setup private chain or side chain】
 ### Install node packages
 
 ```
@@ -37,7 +40,7 @@ SKALE_CHAIN=[YOUR_SKALE_CHAIN_ENDPOINT]
 https://www.trufflesuite.com/ganache  
 
 
-2. Execute Ganache   
+2. Execute Ganache (If it run this Dapp in private chain)
 
 &nbsp;
 
