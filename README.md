@@ -6,9 +6,11 @@
 - SKALE Bakery Exchange is decentralized exchange of ingredients by using ERC721 token.
   (it give tokenId per ingredient)
 
+- Deploy to SKALE side chain
+  https://developers.skalelabs.com/code-samples
+
 - Save and call images of ingredients in FileStorage of SKALE. (In progress to implement)
   https://developers.skalelabs.com/file-storage
-
 
 ***
 
