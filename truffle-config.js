@@ -1,13 +1,15 @@
 const path = require("path");
 require('dotenv').config();
-//const mnemonic = process.env.Mnemonic;
+
 const HDWalletProvider = require("truffle-hdwallet-provider");
 
+// Provide my Mnemonic
+const mnemonic = process.env.Mnemonic;
+
 // Create your own key for Production environments (https://infura.io/)
-//const INFURA_ID = 'd6760e62b67f4937ba1ea2691046f06d';
 const INFURA_API_KEY = process.env.INFURA_API_KEY;
 
-//Provide your SKALE endpoint address
+// Provide your SKALE endpoint address
 const skale = process.env.SKALE_CHAIN_TRUFFLE;
 
 
@@ -39,15 +41,14 @@ module.exports = {
       gasPrice: 10000000000,
     },
     rinkeby: {
-      provider: () => new HDWalletProvider(mnemonic, "https://rinkeby.infura.io/v3/${infuraKey}"),
-      //provider: () => new HDWalletProvider(process.env.MNENOMIC, "https://rinkeby.infura.io/v3/" + process.env.INFURA_API_KEY),
+      provider: () => new HDWalletProvider(mnemonic, "https://rinkeby.infura.io/v3/" + process.env.INFURA_API_KEY),
       network_id: 4,
       gas: 3000000,
       gasPrice: 10000000000
     },
     // main ethereum network(mainnet)
     main: {
-      provider: () => new HDWalletProvider(process.env.MNENOMIC, "https://mainnet.infura.io/v3/" + process.env.INFURA_API_KEY),
+      provider: () => new HDWalletProvider(mnemonic, "https://mainnet.infura.io/v3/" + process.env.INFURA_API_KEY),
       network_id: 1,
       gas: 3000000,
       gasPrice: 10000000000

@@ -5,7 +5,7 @@ import Footer from "./components/Footer/index.js";
 import Hero from "./components/Hero/index.js";
 import Web3Info from "./components/Web3Info/index.js";
 
-import { Loader, Button, Card, Input, Heading, Table, Form, Flex, Box, Image } from 'rimble-ui';
+import { Loader, Button, Card, Input, Heading, Table, Form, Image } from 'rimble-ui';
 import { Grid } from 'react-bootstrap';
 
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts'
@@ -14,17 +14,6 @@ import { moment } from 'moment'
 import { zeppelinSolidityHotLoaderOptions } from '../config/webpack';
 
 import styles from './App.module.scss';
-
-
-
-// Dash board
-// import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
-// import "bootstrap/dist/css/bootstrap.min.css";
-// import "./assets/css/animate.min.css";
-// import "./assets/sass/light-bootstrap-dashboard-react.scss?v=1.3.0";
-// import "./assets/css/demo.css";
-// import "./assets/css/pe-icon-7-stroke.css";
-// import AdminLayout from "./layout/Admin.jsx";
 
 
 
@@ -45,18 +34,18 @@ class App extends Component {
   }
 
 
-  ///////--------------------- Functions of CzExchange ---------------------------
+  ///////--------------------- Functions of BakeryExchange ---------------------------
 
 
 
   ///////--------------------- Functions of testFunc ---------------------------  
   getTestData = async () => {
-    const { accounts, cz_exchange, oracle_wizard_data, creature, creature_factory } = this.state;
+    const { accounts, bakery_exchange, oracle_wizard_data, creature, creature_factory } = this.state;
 
     const web3 = new Web3(window.ethereum);
     //const WizardPresale = require("../../build/contracts/WizardPresale.json");  // Load ABI of contract of WizardPresale
 
-    const response = await cz_exchange.methods.testFunc().send({ from: accounts[0] })
+    const response = await bakery_exchange.methods.testFunc().send({ from: accounts[0] })
     console.log('=== response of testFunc function ===', response);  // Debug
 
     const response_2 = await creature.methods.baseTokenURI().call()
@@ -72,7 +61,7 @@ class App extends Component {
     console.log('=== response of canMint function ===', response_5);   // Debug --> Successful
 
 
-    const response_7 = await cz_exchange.methods.checkOwnerAddr(_tokenId).call();
+    const response_7 = await bakery_exchange.methods.checkOwnerAddr(_tokenId).call();
     console.log('=== response of checkOwnerAddr function ===', response_7);  // Debug --> Successful
 
 
@@ -80,11 +69,11 @@ class App extends Component {
      * @dev mintNFT function
      */
     let _to1 = "0xc2e05710aef33b63bc6b2b7471f3fa072b1fa15b"
-    const response_6 = await cz_exchange.methods.mintNFT(_to1).send({ from: accounts[0] })
+    const response_6 = await bakery_exchange.methods.mintNFT(_to1).send({ from: accounts[0] })
     console.log('=== response of mintNFT function（tokenId = 2）===', response_6);  // Debug --> Successful
 
     let _to2 = "0x8d46fdefcc0702dbca05bfbfc21abf197be970a9"
-    const response_8 = await cz_exchange.methods.mintNFT(_to2).send({ from: accounts[0] })
+    const response_8 = await bakery_exchange.methods.mintNFT(_to2).send({ from: accounts[0] })
     console.log('=== response of mintNFT function（tokenId = 3）===', response_8);  // Debug --> Successful
 
 
@@ -93,7 +82,7 @@ class App extends Component {
      */
     let _tokenIdBuyNFT = 2
     let _buyer = "0xb7f1a8b10ac4e9c0ba2fd705dc7b45dfff72ced1"
-    const response_9 = await cz_exchange.methods.buyNFT(_tokenIdBuyNFT, _buyer).send({ from: accounts[0] })
+    const response_9 = await bakery_exchange.methods.buyNFT(_tokenIdBuyNFT, _buyer).send({ from: accounts[0] })
     console.log('=== response of buyNFT function ===', response_9);  // Debug --> Fail
 
   }
@@ -117,14 +106,12 @@ class App extends Component {
   componentDidMount = async () => {
     const hotLoaderDisabled = zeppelinSolidityHotLoaderOptions.disabled;
  
-    let CzExchange = {};
-    let OracleWizardData = {};
+    let BakeryExchange = {};
     let Creature = {};
     let CreatureFactory = {};
 
     try {
-      CzExchange = require("../../build/contracts/CzExchange.json");              // Load ABI of contract of CzExchange
-      OracleWizardData = require("../../build/contracts/OracleWizardData.json");  // Load ABI of contract of OracleWizardData
+      BakeryExchange = require("../../build/contracts/BakeryExchange.json");      // Load ABI of contract of BakeryExchange
       Creature = require("../../build/contracts/Creature.json");                  // Load ABI of contract of Creature
       CreatureFactory = require("../../build/contracts/CreatureFactory.json");    // Load ABI of contract of CreatureFactory
     } catch (e) {
@@ -153,31 +140,20 @@ class App extends Component {
         let balance = accounts.length > 0 ? await web3.eth.getBalance(accounts[0]): web3.utils.toWei('0');
         balance = web3.utils.fromWei(balance, 'ether');
 
-        let instanceCzExchange = null;
-        let instanceOracleWizardData = null;
+        let instanceBakeryExchange = null;
         let instanceCreature = null;
         let instanceCreatureFactory = null;
         let deployedNetwork = null;
 
         // Create instance of contracts
-        if (CzExchange.networks) {
-          deployedNetwork = CzExchange.networks[networkId.toString()];
+        if (BakeryExchange.networks) {
+          deployedNetwork = BakeryExchange.networks[networkId.toString()];
           if (deployedNetwork) {
-            instanceCzExchange = new web3.eth.Contract(
-              CzExchange.abi,
+            instanceBakeryExchange = new web3.eth.Contract(
+              BakeryExchange.abi,
               deployedNetwork && deployedNetwork.address,
             );
-            console.log('=== instanceCzExchange ===', instanceCzExchange);
-          }
-        }
-        if (OracleWizardData.networks) {
-          deployedNetwork = OracleWizardData.networks[networkId.toString()];
-          if (deployedNetwork) {
-            instanceOracleWizardData = new web3.eth.Contract(
-              OracleWizardData.abi,
-              deployedNetwork && deployedNetwork.address,
-            );
-            console.log('=== instanceOracleWizardData ===', instanceOracleWizardData);
+            console.log('=== instanceBakeryExchange ===', instanceBakeryExchange);
           }
         }
         if (Creature.networks) {
@@ -201,14 +177,14 @@ class App extends Component {
           }
         }
 
-        if (instanceCzExchange || instanceOracleWizardData || Creature || CreatureFactory) {
+        if (instanceBakeryExchange || Creature || CreatureFactory) {
           // Set web3, accounts, and contract to the state, and then proceed with an
           // example of interacting with the contract's methods.
           this.setState({ web3, ganacheAccounts, accounts, balance, networkId, networkType, hotLoaderDisabled,
-            isMetaMask, cz_exchange: instanceCzExchange, oracle_wizard_data: instanceOracleWizardData, creature: instanceCreature, creature_factory: instanceCreatureFactory }, () => {
-              this.refreshValues(instanceCzExchange, instanceOracleWizardData, instanceCreature, instanceCreatureFactory);
+            isMetaMask, bakery_exchange: instanceBakeryExchange, creature: instanceCreature, creature_factory: instanceCreatureFactory }, () => {
+              this.refreshValues(instanceBakeryExchange, instanceCreature, instanceCreatureFactory);
               setInterval(() => {
-                this.refreshValues(instanceCzExchange, instanceOracleWizardData, instanceCreature, instanceCreatureFactory);
+                this.refreshValues(instanceBakeryExchange, instanceCreature, instanceCreatureFactory);
               }, 5000);
             });
         }
@@ -231,12 +207,9 @@ class App extends Component {
     }
   }
 
-  refreshValues = (instanceCzExchange, instanceOracleWizardData, instanceCreature, instanceCreatureFactory) => {
-    if (instanceCzExchange) {
-      console.log('refreshValues of instanceCzExchange');
-    }
-    if (instanceOracleWizardData) {
-      console.log('refreshValues of instanceOracleWizardData');
+  refreshValues = (instanceBakeryExchange, instanceCreature, instanceCreatureFactory) => {
+    if (instanceBakeryExchange) {
+      console.log('refreshValues of instanceBakeryExchange');
     }
     if (instanceCreature) {
       console.log('refreshValues of instanceCreature');
@@ -278,17 +251,17 @@ class App extends Component {
     );
   }
 
-  renderCzExchange() {
+  renderBakeryExchange() {
     return (
       <div className={styles.wrapper}>
       {!this.state.web3 && this.renderLoader()}
-      {this.state.web3 && !this.state.cz_exchange && (
-        this.renderDeployCheck('cz_exchange')
+      {this.state.web3 && !this.state.bakery_exchange && (
+        this.renderDeployCheck('bakery_exchange')
       )}
-      {this.state.web3 && this.state.cz_exchange && (
+      {this.state.web3 && this.state.bakery_exchange && (
         <div className={styles.contracts}>
 
-          <h2>SKALE DEx</h2>
+          <h2>SKALE Bakery Exchange</h2>
 
           <div className={styles.widgets}>
             <Card width={'30%'} bg="primary">
@@ -402,16 +375,6 @@ class App extends Component {
               <Button size={'small'} onClick={this.getTestData}>Buy</Button>
             </Card>
           </div>
-
-
-          <div className={styles.widgets}>
-            <Card width={'30%'} bg="primary">
-              <h2>SKALE DEx / Test Button</h2>
-
-              <Button width={'100%'} onClick={this.getTestData}>Get Test Data</Button>
-            </Card>
-          </div>
-
         </div>
       )}
       </div>
@@ -423,7 +386,7 @@ class App extends Component {
       <div className={styles.App}>
         <Header />
           {this.state.route === '' && this.renderInstructions()}
-          {this.state.route === 'cz_exchange' && this.renderCzExchange()}
+          {this.state.route === 'bakery_exchange' && this.renderBakeryExchange()}
         <Footer />
       </div>
     );

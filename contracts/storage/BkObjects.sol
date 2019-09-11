@@ -1,7 +1,7 @@
 pragma solidity ^0.5.0;
 
 
-contract CzObjects {
+contract BkObjects {
 
     struct NftTicket {
         uint256 tokenId;
